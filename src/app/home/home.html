@@ -23,7 +23,36 @@
                             <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
                         </div>
                     </div>
+                  
                 </div>
+                   <!-- parte modificada para formulario-->
+                <input #nombre type="text" placeholder="Nombre">
+<input #precio type="number" placeholder="Precio">
+
+<select #categoriaID>
+  <option *ngFor="let c of categorias" [value]="c.id">{{ c.nombre }}</option>
+</select>
+
+<button type="button" (click)="agregarProducto(nombre.value, +precio.value, +categoriaID.value)">
+  Agregar
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>nombre</th>
+      <th>precio</th>
+      <th>Categoría</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productos">
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.precio }}</td>
+      <td>{{ p.categoria?.nombre || obtenerNombreCategoria(p.categoria_id || p.categoriaID) }}</td>
+    </tr>
+  </tbody>
+</table>
             </div>
         </section>
         <!-- Image Showcases-->
